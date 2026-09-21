@@ -1,0 +1,70 @@
+{
+    "henriquekieckbusch_jev_analysis": {
+        "column": {
+            "analysis_id": true,
+            "entity_type": true,
+            "entity_id": true,
+            "context_hash": true,
+            "model": true,
+            "answers": true,
+            "input_tokens": true,
+            "output_tokens": true,
+            "error": true,
+            "analyzed_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "HENRIQUEKIECKBUSCH_JEV_ANALYSIS_ANALYZED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "HENRIQUEKIECKBUSCH_JEV_ANALYSIS_ENTITY_TYPE_ENTITY_ID": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "jev_order_risk": true,
+            "jev_fraud_risk": true,
+            "jev_payment_risk": true,
+            "jev_return_risk": true,
+            "jev_fulfillment_risk": true,
+            "jev_shipping_risk": true,
+            "jev_manual_review": true,
+            "jev_main_risk_factor": true,
+            "jev_recommended_action": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "jev_order_risk": true,
+            "jev_fraud_risk": true,
+            "jev_payment_risk": true,
+            "jev_return_risk": true,
+            "jev_fulfillment_risk": true,
+            "jev_shipping_risk": true,
+            "jev_manual_review": true,
+            "jev_main_risk_factor": true,
+            "jev_recommended_action": true
+        },
+        "index": {
+            "SALES_ORDER_GRID_JEV_RECOMMENDED_ACTION": true
+        }
+    },
+    "review": {
+        "column": {
+            "jev_review_authenticity": true,
+            "jev_review_quality": true,
+            "jev_product_issue": true,
+            "jev_review_sentiment": true,
+            "jev_review_action": true
+        }
+    },
+    "quote": {
+        "column": {
+            "jev_recovery_priority": true,
+            "jev_recovery_strategy": true,
+            "jev_recovery_incentive": true,
+            "jev_messaging_angle": true
+        }
+    }
+}

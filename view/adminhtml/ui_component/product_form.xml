@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="jev">
+        <settings>
+            <label translate="true">Jev</label>
+        </settings>
+        <container name="jev_notice">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">container</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/html</item>
+                    <item name="content" xsi:type="string" translate="true">These values are computed automatically by Jev every time this product is saved. Enable Jev under Stores &gt; Configuration &gt; Services &gt; Jev.</item>
+                    <item name="sortOrder" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </container>
+        <container name="container_jev_product_health">
+            <field name="jev_product_health" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_publication_readiness">
+            <field name="jev_publication_readiness" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_title_quality">
+            <field name="jev_title_quality" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_description_quality">
+            <field name="jev_description_quality" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_image_coverage">
+            <field name="jev_image_coverage" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_attribute_completeness">
+            <field name="jev_attribute_completeness" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_data_consistency">
+            <field name="jev_data_consistency" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_category_accuracy">
+            <field name="jev_category_accuracy" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_conversion_potential">
+            <field name="jev_conversion_potential" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_return_risk">
+            <field name="jev_return_risk" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_product_problem">
+            <field name="jev_product_problem" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_recommended_action">
+            <field name="jev_recommended_action" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_ai_understanding">
+            <field name="jev_ai_understanding" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_ai_recommendation_readiness">
+            <field name="jev_ai_recommendation_readiness" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_ai_visibility">
+            <field name="jev_ai_visibility" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_stock_level">
+            <field name="jev_stock_level" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_stockout_risk">
+            <field name="jev_stockout_risk" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_reorder_decision">
+            <field name="jev_reorder_decision" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_dead_stock_risk">
+            <field name="jev_dead_stock_risk" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_inventory_action">
+            <field name="jev_inventory_action" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_promotion_priority">
+            <field name="jev_promotion_priority" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_merchandising_strategy">
+            <field name="jev_merchandising_strategy" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_cross_sell_opportunity">
+            <field name="jev_cross_sell_opportunity" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_upsell_opportunity">
+            <field name="jev_upsell_opportunity" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_discount_opportunity">
+            <field name="jev_discount_opportunity" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+        <container name="container_jev_pricing_action">
+            <field name="jev_pricing_action" formElement="select">
+                <settings>
+                    <disabled>true</disabled>
+                </settings>
+            </field>
+        </container>
+    </fieldset>
+</form>

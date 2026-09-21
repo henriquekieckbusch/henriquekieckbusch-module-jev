@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales_order_tabs">
+            <block class="HenriqueKieckbusch\Jev\Block\Adminhtml\Order\View\Tab\Jev" name="order_tab_jev" template="HenriqueKieckbusch_Jev::order/tab.phtml"/>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">jev</argument>
+                <argument name="block" xsi:type="string">order_tab_jev</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

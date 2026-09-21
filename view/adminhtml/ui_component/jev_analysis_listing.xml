@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">jev_analysis_listing.jev_analysis_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>jev_analysis_columns</spinner>
+        <deps>
+            <dep>jev_analysis_listing.jev_analysis_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="jev_analysis_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">analysis_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>HenriqueKieckbusch_Jev::activity</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="jev_analysis_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>analysis_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="jev_analysis_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">jev_analysis_listing.jev_analysis_listing.jev_analysis_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">refresh</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <column name="analysis_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <sorting>desc</sorting>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="entity_type" component="Magento_Ui/js/grid/columns/select" sortOrder="20">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\EntityType"/>
+                <dataType>select</dataType>
+                <label translate="true">Entity</label>
+            </settings>
+        </column>
+        <column name="entity_link" class="HenriqueKieckbusch\Jev\Ui\Component\Listing\Column\Entity" component="Magento_Ui/js/grid/columns/link" sortOrder="30">
+            <settings>
+                <label translate="true">Record</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="entity_id" sortOrder="40">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Entity ID</label>
+            </settings>
+        </column>
+        <column name="model" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Model</label>
+            </settings>
+        </column>
+        <column name="input_tokens" sortOrder="60">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Input Tokens</label>
+            </settings>
+        </column>
+        <column name="output_tokens" sortOrder="70">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Output Tokens</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="error" sortOrder="80">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Last Error</label>
+            </settings>
+        </column>
+        <column name="analyzed_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="90">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Analyzed At</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="100">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated At</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="HenriqueKieckbusch\Jev\Ui\Component\Listing\Column\Actions" sortOrder="110">
+            <settings>
+                <indexField>analysis_id</indexField>
+                <label translate="true">Action</label>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

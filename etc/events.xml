@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_save_commit_after">
+        <observer name="henriquekieckbusch_jev_analyze_order" instance="HenriqueKieckbusch\Jev\Observer\AnalyzeOrderOnSave"/>
+    </event>
+    <event name="customer_save_commit_after">
+        <observer name="henriquekieckbusch_jev_analyze_customer" instance="HenriqueKieckbusch\Jev\Observer\AnalyzeCustomerOnSave"/>
+    </event>
+    <event name="catalog_product_save_commit_after">
+        <observer name="henriquekieckbusch_jev_analyze_product" instance="HenriqueKieckbusch\Jev\Observer\AnalyzeProductOnSave"/>
+    </event>
+    <event name="review_save_commit_after">
+        <observer name="henriquekieckbusch_jev_analyze_review" instance="HenriqueKieckbusch\Jev\Observer\AnalyzeReviewOnSave"/>
+    </event>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_jev">
+        <observer name="henriquekieckbusch_jev_config_changed" instance="HenriqueKieckbusch\Jev\Observer\ConfigChanged"/>
+    </event>
+    <event name="backend_block_widget_grid_prepare_grid_before">
+        <observer name="henriquekieckbusch_jev_add_review_grid_columns" instance="HenriqueKieckbusch\Jev\Observer\AddReviewGridColumns"/>
+        <observer name="henriquekieckbusch_jev_add_abandoned_cart_grid_columns" instance="HenriqueKieckbusch\Jev\Observer\AddAbandonedCartGridColumns"/>
+    </event>
+</config>

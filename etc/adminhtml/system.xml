@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="jev" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>Jev</label>
+            <tab>service</tab>
+            <resource>HenriqueKieckbusch_Jev::config</resource>
+            <group id="general" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <comment><![CDATA[Jev is the decision model of <a href="https://typesafe.ai" target="_blank">Typesafe</a>. Every time an order, customer, product or review is saved, Jev answers a fixed set of questions about it (risk, quality, recommended action) and the answers are stored as attributes you can see in grids and in the "Jev" tabs.]]></comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable Jev</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_key" translate="label comment" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Key</label>
+                    <backend_model>HenriqueKieckbusch\Jev\Model\Config\Backend\ApiKey</backend_model>
+                    <comment><![CDATA[Create a free account at <a href="https://console.typesafe.ai/login" target="_blank">console.typesafe.ai</a>, create a token and paste it here. It looks like <code>apikey_&lt;something&gt;</code>. Typesafe gives you 5 US dollars of free credit, which lasts a long time because each Jev call costs a tiny fraction of a cent.<br/>When you save a new key with Jev enabled, the 10 most recent orders and the 10 most recent customers that were never analyzed are analyzed right away.]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="model" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Model</label>
+                    <source_model>HenriqueKieckbusch\Jev\Model\Config\Source\Model</source_model>
+                    <comment>jev-latest is the stable model; jev-preview is the next version.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="timeout" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Timeout (seconds)</label>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                    <comment>Maximum time to wait for one Jev answer. A typical call takes less than a second.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="debug" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Debug Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Write every request and response to var/log/jev.log.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="order" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Orders</label>
+                <field id="add_comment" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Add Order Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Add an internal order comment (not visible to the customer) when Jev recommends manual review, hold or reject.</comment>
+                </field>
+            </group>
+            <group id="abandoned_cart" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Abandoned Carts</label>
+                <comment>Abandoned carts are analyzed by cron (every hour) because a cart changes too often to be analyzed on every save. Results appear in Reports &gt; Marketing &gt; Abandoned Carts.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Analyze Abandoned Carts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="min_age_hours" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Minimum Age (hours)</label>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                    <comment>A cart is considered abandoned after this many hours without changes.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="batch_size" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Carts per Cron Run</label>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

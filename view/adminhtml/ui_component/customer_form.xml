@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <htmlContent name="customer_edit_tab_jev_content">
+        <block class="HenriqueKieckbusch\Jev\Block\Adminhtml\Customer\Edit\Tab\Jev" name="customer_edit_tab_jev" template="HenriqueKieckbusch_Jev::customer/tab/jev.phtml">
+            <arguments>
+                <argument name="sort_order" xsi:type="number">25</argument>
+                <argument name="tab_label" xsi:type="string" translate="true">Jev</argument>
+            </arguments>
+        </block>
+    </htmlContent>
+</form>

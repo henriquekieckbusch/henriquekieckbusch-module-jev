@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="jev_refresh">
+                <settings>
+                    <url path="jev/mass/order"/>
+                    <type>jev_refresh</type>
+                    <label translate="true">Refresh Jev</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="sales_order_columns">
+        <column name="jev_order_risk" component="Magento_Ui/js/grid/columns/select" sortOrder="205">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\OrderRisk"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Order Risk</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="jev_fraud_risk" component="Magento_Ui/js/grid/columns/select" sortOrder="206">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\FraudRisk"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Fraud Risk</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_payment_risk" component="Magento_Ui/js/grid/columns/select" sortOrder="207">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\PaymentRisk"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Payment Risk</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_return_risk" component="Magento_Ui/js/grid/columns/select" sortOrder="208">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\ReturnRisk"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Return Risk</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_fulfillment_risk" component="Magento_Ui/js/grid/columns/select" sortOrder="209">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\FulfillmentRisk"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Fulfillment Risk</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_shipping_risk" component="Magento_Ui/js/grid/columns/select" sortOrder="210">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\ShippingRisk"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Shipping Risk</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_manual_review" component="Magento_Ui/js/grid/columns/select" sortOrder="211">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\ManualReview"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Manual Review</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_main_risk_factor" component="Magento_Ui/js/grid/columns/select" sortOrder="212">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\MainRiskFactor"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Main Risk Factor</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="jev_recommended_action" component="Magento_Ui/js/grid/columns/select" sortOrder="213">
+            <settings>
+                <filter>select</filter>
+                <options class="HenriqueKieckbusch\Jev\Model\Source\Order\RecommendedAction"/>
+                <dataType>select</dataType>
+                <label translate="true">Jev: Recommended Action</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+    </columns>
+</listing>

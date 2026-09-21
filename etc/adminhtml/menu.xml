@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="HenriqueKieckbusch_Jev::activity" title="Jev Activity" translate="title" module="HenriqueKieckbusch_Jev"
+             sortOrder="90" parent="Magento_Reports::report_marketing" action="jev/activity/index"
+             resource="HenriqueKieckbusch_Jev::activity"/>
+    </menu>
+</config>

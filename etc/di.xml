@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Entity handlers: one per analyzable entity type -->
+    <type name="HenriqueKieckbusch\Jev\Model\Handler\Pool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="order" xsi:type="object">HenriqueKieckbusch\Jev\Model\Handler\Order</item>
+                <item name="customer" xsi:type="object">HenriqueKieckbusch\Jev\Model\Handler\Customer</item>
+                <item name="product" xsi:type="object">HenriqueKieckbusch\Jev\Model\Handler\Product</item>
+                <item name="review" xsi:type="object">HenriqueKieckbusch\Jev\Model\Handler\Review</item>
+                <item name="quote" xsi:type="object">HenriqueKieckbusch\Jev\Model\Handler\Quote</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Dedicated log file var/log/jev.log -->
+    <virtualType name="HenriqueKieckbusch\Jev\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/jev.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">jev</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="jev" xsi:type="object">HenriqueKieckbusch\Jev\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="HenriqueKieckbusch\Jev\Model\Client">
+        <arguments>
+            <argument name="logger" xsi:type="object">HenriqueKieckbusch\Jev\Logger</argument>
+        </arguments>
+    </type>
+    <type name="HenriqueKieckbusch\Jev\Model\Analyzer">
+        <arguments>
+            <argument name="logger" xsi:type="object">HenriqueKieckbusch\Jev\Logger</argument>
+        </arguments>
+    </type>
+
+    <!-- CLI: bin/magento jev:analyze -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="henriquekieckbusch_jev_analyze" xsi:type="object">HenriqueKieckbusch\Jev\Console\Command\AnalyzeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- EAV source models for the customer and product select attributes -->
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\CustomerOptions" type="HenriqueKieckbusch\Jev\Model\Source\Options">
+        <arguments>
+            <argument name="entityType" xsi:type="string">customer</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\ProductOptions" type="HenriqueKieckbusch\Jev\Model\Source\Options">
+        <arguments>
+            <argument name="entityType" xsi:type="string">product</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Option sources for the order grid columns -->
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\OrderRisk" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">order_risk</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\FraudRisk" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">fraud_risk</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\PaymentRisk" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">payment_risk</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\ReturnRisk" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">return_risk</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\FulfillmentRisk" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">fulfillment_risk</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\ShippingRisk" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">shipping_risk</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\ManualReview" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">manual_review</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\MainRiskFactor" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">main_risk_factor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Model\Source\Order\RecommendedAction" type="HenriqueKieckbusch\Jev\Model\Source\GridOptions">
+        <arguments>
+            <argument name="entityType" xsi:type="string">order</argument>
+            <argument name="questionCode" xsi:type="string">recommended_action</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Copy the Jev columns from sales_order into sales_order_grid -->
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="jev_order_risk" xsi:type="string">sales_order.jev_order_risk</item>
+                <item name="jev_fraud_risk" xsi:type="string">sales_order.jev_fraud_risk</item>
+                <item name="jev_payment_risk" xsi:type="string">sales_order.jev_payment_risk</item>
+                <item name="jev_return_risk" xsi:type="string">sales_order.jev_return_risk</item>
+                <item name="jev_fulfillment_risk" xsi:type="string">sales_order.jev_fulfillment_risk</item>
+                <item name="jev_shipping_risk" xsi:type="string">sales_order.jev_shipping_risk</item>
+                <item name="jev_manual_review" xsi:type="string">sales_order.jev_manual_review</item>
+                <item name="jev_main_risk_factor" xsi:type="string">sales_order.jev_main_risk_factor</item>
+                <item name="jev_recommended_action" xsi:type="string">sales_order.jev_recommended_action</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Jev Activity listing (Reports > Jev Activity) -->
+    <virtualType name="HenriqueKieckbusch\Jev\Model\ResourceModel\Analysis\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">henriquekieckbusch_jev_analysis</argument>
+            <argument name="resourceModel" xsi:type="string">HenriqueKieckbusch\Jev\Model\ResourceModel\Analysis</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="jev_analysis_listing_data_source" xsi:type="string">HenriqueKieckbusch\Jev\Model\ResourceModel\Analysis\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Analyze-on-save observers: one virtualType per entity type -->
+    <virtualType name="HenriqueKieckbusch\Jev\Observer\AnalyzeOrderOnSave" type="HenriqueKieckbusch\Jev\Observer\AnalyzeOnSave">
+        <arguments>
+            <argument name="type" xsi:type="string">order</argument>
+            <argument name="eventDataKey" xsi:type="string">data_object</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Observer\AnalyzeCustomerOnSave" type="HenriqueKieckbusch\Jev\Observer\AnalyzeOnSave">
+        <arguments>
+            <argument name="type" xsi:type="string">customer</argument>
+            <argument name="eventDataKey" xsi:type="string">data_object</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Observer\AnalyzeProductOnSave" type="HenriqueKieckbusch\Jev\Observer\AnalyzeOnSave">
+        <arguments>
+            <argument name="type" xsi:type="string">product</argument>
+            <argument name="eventDataKey" xsi:type="string">data_object</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HenriqueKieckbusch\Jev\Observer\AnalyzeReviewOnSave" type="HenriqueKieckbusch\Jev\Observer\AnalyzeOnSave">
+        <arguments>
+            <argument name="type" xsi:type="string">review</argument>
+            <argument name="eventDataKey" xsi:type="string">data_object</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="HenriqueKieckbusch\Jev\Model\OrderAttributeWriter">
+        <arguments>
+            <argument name="orderGrid" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\Grid</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,6 @@
+Open Software License ("OSL") v. 3.0
+
+This module is distributed under the terms of the Open Software License 3.0
+and the Academic Free License 3.0, the same license terms used by the
+Magento Open Source platform. See https://opensource.org/licenses/OSL-3.0
+and https://opensource.org/licenses/AFL-3.0 for the full text.

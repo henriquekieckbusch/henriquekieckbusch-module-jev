@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var \HenriqueKieckbusch\Jev\Block\Adminhtml\Order\View\Tab\Jev $block */
+?>
+<div class="admin__page-section-item-content">
+    <?= $block->getLayout()->createBlock(\HenriqueKieckbusch\Jev\Block\Adminhtml\Panel::class)
+        ->setData('entity_type', 'order')
+        ->setData('entity_id', $block->getOrderId())
+        ->toHtml() ?>
+</div>

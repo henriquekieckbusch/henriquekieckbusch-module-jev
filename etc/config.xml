@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <jev>
+            <general>
+                <enabled>0</enabled>
+                <api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <model>jev-latest</model>
+                <timeout>10</timeout>
+                <debug>0</debug>
+            </general>
+            <order>
+                <add_comment>1</add_comment>
+            </order>
+            <abandoned_cart>
+                <enabled>1</enabled>
+                <min_age_hours>1</min_age_hours>
+                <batch_size>50</batch_size>
+            </abandoned_cart>
+        </jev>
+    </default>
+</config>

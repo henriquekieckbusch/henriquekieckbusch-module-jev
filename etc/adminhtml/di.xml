@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Review\Block\Adminhtml\Edit">
+        <plugin name="henriquekieckbusch_jev_add_review_analysis_panel" type="HenriqueKieckbusch\Jev\Plugin\AddReviewAnalysisPanel"/>
+    </type>
+    <type name="Magento\Review\Model\ResourceModel\Review\Product\Collection">
+        <plugin name="henriquekieckbusch_jev_add_review_grid_select_columns" type="HenriqueKieckbusch\Jev\Plugin\AddReviewGridSelectColumns"/>
+    </type>
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="jev_answer_notice" xsi:type="array">
+                    <item name="class" xsi:type="string">HenriqueKieckbusch\Jev\Ui\DataProvider\Product\Form\Modifier\AnswerNotice</item>
+                    <item name="sortOrder" xsi:type="number">15</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

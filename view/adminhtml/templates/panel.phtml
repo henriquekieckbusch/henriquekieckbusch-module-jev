@@ -1,0 +1,107 @@
+<?php
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var \HenriqueKieckbusch\Jev\Block\Adminhtml\Panel $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$rows = $block->getRows();
+$analysis = $block->getAnalysis();
+$tooltipStyle = 'border-bottom: 1px dotted #999; cursor: help;';
+?>
+<div class="jev-panel">
+    <?php if (!$block->isReady()): ?>
+        <div class="message message-warning">
+            <?= $escaper->escapeHtml(__('Jev is disabled or has no API key.')) ?>
+            <a href="<?= $escaper->escapeUrl($block->getConfigUrl()) ?>">
+                <?= $escaper->escapeHtml(__('Open the Jev configuration')) ?>
+            </a>
+        </div>
+    <?php endif; ?>
+
+    <div class="jev-panel-actions" style="margin: 0 0 15px;">
+        <a class="action-secondary" href="<?= $escaper->escapeUrl($block->getRefreshUrl()) ?>">
+            <span><?= $escaper->escapeHtml(__('Refresh Jev')) ?></span>
+        </a>
+        <?php if ($block->getAnalyzedAt() !== ''): ?>
+            <span style="margin-left: 15px;">
+                <?= $escaper->escapeHtml(__('Last analyzed: %1', $block->getAnalyzedAt())) ?>
+                <?php if ($block->getModelName() !== ''): ?>
+                    (<?= $escaper->escapeHtml($block->getModelName()) ?>)
+                <?php endif; ?>
+            </span>
+        <?php else: ?>
+            <span style="margin-left: 15px;"><?= $escaper->escapeHtml(__('Not analyzed yet.')) ?></span>
+        <?php endif; ?>
+    </div>
+
+    <?php if ($block->getError() !== ''): ?>
+        <div class="message message-error">
+            <?= $escaper->escapeHtml(__('Last Jev call failed: %1', $block->getError())) ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($rows): ?>
+        <table class="admin__table-secondary jev-panel-table">
+            <thead>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Question')) ?></th>
+                    <th><?= $escaper->escapeHtml(__('Jev Answer')) ?></th>
+                    <th><?= $escaper->escapeHtml(__('Confidence')) ?></th>
+                    <th><?= $escaper->escapeHtml(__('Probabilities')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($rows as $row): ?>
+                <tr>
+                    <th scope="row"
+                        <?php if ($row['question'] !== null): ?>
+                            title="<?= $escaper->escapeHtmlAttr($row['question']) ?>"
+                            style="<?= $escaper->escapeHtmlAttr($tooltipStyle) ?>"
+                        <?php endif; ?>
+                    >
+                        <?= $escaper->escapeHtml($row['label']) ?>
+                    </th>
+                    <td>
+                        <?php if ($row['answer'] !== null): ?>
+                            <strong
+                                <?php if ($row['answerDescription'] !== null): ?>
+                                    title="<?= $escaper->escapeHtmlAttr($row['answerDescription']) ?>"
+                                    style="<?= $escaper->escapeHtmlAttr($tooltipStyle) ?>"
+                                <?php endif; ?>
+                            >
+                                <?= $escaper->escapeHtml($row['answer']) ?>
+                            </strong>
+                        <?php else: ?>
+                            <span class="jev-empty">&mdash;</span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ($row['confidence'] !== null): ?>
+                            <?= $escaper->escapeHtml((string)$row['confidence']) ?>%
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php foreach ($row['probabilities'] as $index => $probability): ?>
+                            <?php if ($index > 0): ?>
+                                <?= $escaper->escapeHtml(' · ') ?>
+                            <?php endif; ?>
+                            <span
+                                <?php if ($probability['description'] !== null): ?>
+                                    title="<?= $escaper->escapeHtmlAttr($probability['description']) ?>"
+                                    style="<?= $escaper->escapeHtmlAttr($tooltipStyle) ?>"
+                                <?php endif; ?>
+                            >
+                                <?= $escaper->escapeHtml($probability['label']) ?>
+                                <?= $escaper->escapeHtml($probability['percent']) ?>%
+                            </span>
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>

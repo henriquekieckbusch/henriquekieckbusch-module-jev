@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="henriquekieckbusch_jev_analysis" resource="default" engine="innodb" comment="Jev: last analysis of each entity">
+        <column xsi:type="int" name="analysis_id" unsigned="true" nullable="false" identity="true" comment="Analysis ID"/>
+        <column xsi:type="varchar" name="entity_type" nullable="false" length="32" comment="Entity type (order, customer, product, review, quote)"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" comment="Entity ID"/>
+        <column xsi:type="varchar" name="context_hash" nullable="true" length="64" comment="SHA-256 of the context sent to Jev"/>
+        <column xsi:type="varchar" name="model" nullable="true" length="64" comment="Model that answered"/>
+        <column xsi:type="text" name="answers" nullable="true" comment="JSON answers with confidence and probabilities"/>
+        <column xsi:type="int" name="input_tokens" unsigned="true" nullable="false" default="0" comment="Input tokens of the last call"/>
+        <column xsi:type="int" name="output_tokens" unsigned="true" nullable="false" default="0" comment="Output tokens of the last call"/>
+        <column xsi:type="text" name="error" nullable="true" comment="Last error message, empty when the last call succeeded"/>
+        <column xsi:type="timestamp" name="analyzed_at" nullable="true" comment="Last successful analysis"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="analysis_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="HENRIQUEKIECKBUSCH_JEV_ANALYSIS_ENTITY_TYPE_ENTITY_ID">
+            <column name="entity_type"/>
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="HENRIQUEKIECKBUSCH_JEV_ANALYSIS_ANALYZED_AT" indexType="btree">
+            <column name="analyzed_at"/>
+        </index>
+    </table>
+    <table name="sales_order" resource="sales" engine="innodb" comment="Sales Flat Order">
+        <column xsi:type="varchar" name="jev_order_risk" nullable="true" length="32" comment="Jev: Order Risk"/>
+        <column xsi:type="varchar" name="jev_fraud_risk" nullable="true" length="32" comment="Jev: Fraud Risk"/>
+        <column xsi:type="varchar" name="jev_payment_risk" nullable="true" length="32" comment="Jev: Payment Risk"/>
+        <column xsi:type="varchar" name="jev_return_risk" nullable="true" length="32" comment="Jev: Return Risk"/>
+        <column xsi:type="varchar" name="jev_fulfillment_risk" nullable="true" length="32" comment="Jev: Fulfillment Risk"/>
+        <column xsi:type="varchar" name="jev_shipping_risk" nullable="true" length="32" comment="Jev: Shipping Risk"/>
+        <column xsi:type="varchar" name="jev_manual_review" nullable="true" length="32" comment="Jev: Manual Review"/>
+        <column xsi:type="varchar" name="jev_main_risk_factor" nullable="true" length="32" comment="Jev: Main Risk Factor"/>
+        <column xsi:type="varchar" name="jev_recommended_action" nullable="true" length="32" comment="Jev: Recommended Action"/>
+    </table>
+    <table name="sales_order_grid" resource="sales" engine="innodb" comment="Sales Flat Order Grid">
+        <column xsi:type="varchar" name="jev_order_risk" nullable="true" length="32" comment="Jev: Order Risk"/>
+        <column xsi:type="varchar" name="jev_fraud_risk" nullable="true" length="32" comment="Jev: Fraud Risk"/>
+        <column xsi:type="varchar" name="jev_payment_risk" nullable="true" length="32" comment="Jev: Payment Risk"/>
+        <column xsi:type="varchar" name="jev_return_risk" nullable="true" length="32" comment="Jev: Return Risk"/>
+        <column xsi:type="varchar" name="jev_fulfillment_risk" nullable="true" length="32" comment="Jev: Fulfillment Risk"/>
+        <column xsi:type="varchar" name="jev_shipping_risk" nullable="true" length="32" comment="Jev: Shipping Risk"/>
+        <column xsi:type="varchar" name="jev_manual_review" nullable="true" length="32" comment="Jev: Manual Review"/>
+        <column xsi:type="varchar" name="jev_main_risk_factor" nullable="true" length="32" comment="Jev: Main Risk Factor"/>
+        <column xsi:type="varchar" name="jev_recommended_action" nullable="true" length="32" comment="Jev: Recommended Action"/>
+        <index referenceId="SALES_ORDER_GRID_JEV_RECOMMENDED_ACTION" indexType="btree">
+            <column name="jev_recommended_action"/>
+        </index>
+    </table>
+    <table name="review" resource="default" engine="innodb" comment="Review base information">
+        <column xsi:type="varchar" name="jev_review_authenticity" nullable="true" length="32" comment="Jev: Review Authenticity"/>
+        <column xsi:type="varchar" name="jev_review_quality" nullable="true" length="32" comment="Jev: Review Quality"/>
+        <column xsi:type="varchar" name="jev_product_issue" nullable="true" length="32" comment="Jev: Product Issue"/>
+        <column xsi:type="varchar" name="jev_review_sentiment" nullable="true" length="32" comment="Jev: Review Sentiment"/>
+        <column xsi:type="varchar" name="jev_review_action" nullable="true" length="32" comment="Jev: Review Action"/>
+    </table>
+    <table name="quote" resource="checkout" engine="innodb" comment="Sales Flat Quote">
+        <column xsi:type="varchar" name="jev_recovery_priority" nullable="true" length="32" comment="Jev: Recovery Priority"/>
+        <column xsi:type="varchar" name="jev_recovery_strategy" nullable="true" length="32" comment="Jev: Recovery Strategy"/>
+        <column xsi:type="varchar" name="jev_recovery_incentive" nullable="true" length="32" comment="Jev: Recovery Incentive"/>
+        <column xsi:type="varchar" name="jev_messaging_angle" nullable="true" length="32" comment="Jev: Messaging Angle"/>
+    </table>
+</schema>

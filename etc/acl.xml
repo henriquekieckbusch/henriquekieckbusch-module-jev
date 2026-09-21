@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="HenriqueKieckbusch_Jev::config" title="Jev" translate="title" sortOrder="100"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="HenriqueKieckbusch_Jev::jev" title="Jev" translate="title" sortOrder="200">
+                    <resource id="HenriqueKieckbusch_Jev::refresh" title="Refresh Jev analyses" translate="title" sortOrder="10"/>
+                    <resource id="HenriqueKieckbusch_Jev::activity" title="Jev Activity report" translate="title" sortOrder="20"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

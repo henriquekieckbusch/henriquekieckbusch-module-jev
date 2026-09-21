@@ -1,0 +1,49 @@
+{
+    "name": "henriquekieckbusch/module-jev",
+    "description": "Jev (Typesafe AI) decisions for Magento 2: risk, quality and recovery assessments for orders, customers, products, reviews and abandoned carts.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "keywords": [
+        "magento2",
+        "typesafe",
+        "jev",
+        "ai",
+        "fraud",
+        "risk"
+    ],
+    "authors": [
+        {
+            "name": "Henrique Kieckbusch"
+        }
+    ],
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0",
+        "magento/framework": "*",
+        "magento/module-backend": "*",
+        "magento/module-catalog": "*",
+        "magento/module-catalog-inventory": "*",
+        "magento/module-config": "*",
+        "magento/module-customer": "*",
+        "magento/module-eav": "*",
+        "magento/module-newsletter": "*",
+        "magento/module-quote": "*",
+        "magento/module-reports": "*",
+        "magento/module-review": "*",
+        "magento/module-sales": "*",
+        "magento/module-store": "*",
+        "magento/module-ui": "*",
+        "magento/module-wishlist": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "HenriqueKieckbusch\\Jev\\": ""
+        }
+    }
+}

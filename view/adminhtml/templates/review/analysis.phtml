@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © Henrique Kieckbusch. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var \HenriqueKieckbusch\Jev\Block\Adminhtml\Review\AnalysisPanel $block */
+?>
+<?php if ($block->getReviewId()): ?>
+    <fieldset class="admin__fieldset" style="margin-top: 20px;">
+        <legend class="admin__legend"><span><?= $escaper->escapeHtml(__('Jev')) ?></span></legend><br/>
+        <?= $block->getLayout()->createBlock(\HenriqueKieckbusch\Jev\Block\Adminhtml\Panel::class)
+            ->setData('entity_type', 'review')
+            ->setData('entity_id', $block->getReviewId())
+            ->toHtml() ?>
+    </fieldset>
+<?php endif; ?>
