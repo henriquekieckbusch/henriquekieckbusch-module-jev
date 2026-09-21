@@ -7,6 +7,32 @@ entity, with its confidence and full probability breakdown. Every question is as
 in a **single API call per entity**, so one order save costs one Typesafe request
 no matter how many questions it answers.
 
+## Screenshots
+
+**Order** — new "Jev" tab on the order view page, with a tooltip explaining what the
+chosen answer means:
+
+![Jev tab on an order](docs/images/order.png)
+
+**Customer** — new "Jev Customer Assessment" tab on the customer edit page:
+
+![Jev tab on a customer](docs/images/customer.png)
+
+**Product** — dedicated, read-only "Jev" attribute group on the product edit page,
+updated automatically every time the product is saved:
+
+![Jev attribute group on a product](docs/images/product.png)
+
+**Configuration** — Stores &gt; Configuration &gt; Services &gt; Jev:
+
+![General settings](docs/images/config-general.png)
+![Order comment and abandoned cart settings](docs/images/config-orders-carts.png)
+
+**Jev Activity** — every analyzed entity, of every type, in one report (Reports &gt;
+Marketing &gt; Jev Activity):
+
+![Jev Activity report](docs/images/activity.png)
+
 ## What Jev answers
 
 | Entity | Where you see it | When it runs |
